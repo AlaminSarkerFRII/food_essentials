@@ -1,0 +1,1 @@
+#Django Ecommerce Projects - for Dairy Products 
