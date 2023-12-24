@@ -1,10 +1,69 @@
 {% extends 'mainapp/base.html' %}
+{% load static %}
 
 {% block title %}
   Index
 {% endblock %}
 
-{% block body %}
+
+
+{% block bannar-slider %}
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'mainapp/images/banner/b1.jpg'%}" class="d-block w-100 h-25" alt="banner">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'mainapp/images/banner/b2.jpg'%}" class="d-block w-100 h-25" alt="banner">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'mainapp/images/banner/b3.jpg'%}" class="d-block w-100 h-25" alt="banner">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'mainapp/images/banner/b4.jpg'%}" class="d-block w-100 h-25" alt="banner">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+{% endblock bannar-slider %}
+
+{% block information %}
+
+<div class="container">
+
+  <div class="row mt-4 text-center">
+    <div class="col-md-6">
+
+      <p>lorem20</p>
+
+    </div>
+    
+  </div>
+
+ </div>
+
+
+{% endblock information %}
+
+
+
+{% block main-content %}
+
+ <div class="container">
+
   <div>Hello Dajngo Ecommerce</div>
+
+ </div>
   
-{% endblock %}
+{% endblock main-content %}
