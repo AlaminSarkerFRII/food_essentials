@@ -1,14 +1,25 @@
-{% extends 'mainapp/base.html' %}
-{% load static %}
+{% extends 'mainapp/base.html' %} {% load static %} {% block title %} Category
+{% endblock %} {% block main-content %}
 
-{% block title %}
-  Category
-{% endblock %}
+<h2>This is the Category Page</h2>
 
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="list-group">
+        {% for val in title %}
+        <a
+          href="#"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >{{val.title}}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
 
-{% block main-content %}
-
-<h2>This is the Category Page : {{val}}</h2>
-
+    <div class="col-sm-9"></div>
+  </div>
+</div>
 
 {% endblock main-content %}
