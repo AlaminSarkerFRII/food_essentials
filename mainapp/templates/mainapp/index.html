@@ -42,13 +42,26 @@
 
 <div class="container">
 
-  <div class="row mt-4 text-center">
-    <div class="col-md-6">
+  <div class="row mt-[-8px] text-center bg-success">
 
-      <p>lorem20</p>
+    <div class="col-md-6 p-2 my-4 d-flex flex-column align-self-center">
 
+      <div class="me-auto">
+
+        <h2>Products </h2>
+
+        <span>The Ragin’ Cajuns, who are coming off their school-record sixth-consecutive bowl game, added seven in-state products to the class with three players from Texas, two from Mississippi and one from Pennsylvania, South Carolina and Tennessee.</span>
+  
+      </div>
+    
     </div>
     
+  </div>
+
+  <div>
+
+
+
   </div>
 
  </div>
@@ -60,10 +73,51 @@
 
 {% block main-content %}
 
- <div class="container">
 
-  <div>Hello Dajngo Ecommerce</div>
+<div class="container-fluid  text-center">
 
- </div>
+  <div class="row gap-2 me-auto mt-5">
+
+    <div class="col-1 col-sm-1 col-md-6 col-lg-3 card">
+      <img src="{% static 'mainapp/images/buffalo-ghee.png'%}" class="card-img-top img-fluid" alt="buffalo">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+    <div class="col-1 col-sm-1 col-md-6 col-lg-3 card">
+      <img src="{% static 'mainapp/images/cow-ghee.png'%}" class="card-img-top img-fluid" alt="cow-milk">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+    <div class="col-1 col-sm-1 col-md-6 col-lg-3 card">
+      <img src="{% static 'mainapp/images/cow-milk.png'%}" class="card-img-top img-fluid" alt="cow-milk">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+    <div class="col-1 col-sm-1 col-md-6 col-lg-3 card">
+      <img src="{% static 'mainapp/images/tonemilk.png'%}" class="card-img-top img-fluid" alt="buffalo">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+    <div class="col-1 col-sm-1 col-md-6 col-lg-3 card">
+      <img src="{% static 'mainapp/images/sabja.png'%}" class="card-img-top img-fluid" alt="cow-milk">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+    <div class="col-1 col-sm-1 col-md-6 col-lg-3 card">
+      <img src="{% static 'mainapp/images/standardized-milk.png'%}" class="card-img-top img-fluid" alt="cow-milk">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+  
+   </div>
+  
+</div>
+
   
 {% endblock main-content %}
