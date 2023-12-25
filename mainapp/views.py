@@ -15,3 +15,9 @@ class CategoryView(View):
         title = Products.objects.filter(category=val).values('title')
         return render(request, 'mainapp/category.html', locals())
         # locals() -is the built in function thats executes all variables pass
+
+
+class ProductDetails(View):
+    def get(self, request, pk):
+        product = Products.objects.get(pk=pk)
+        return render(request, 'mainapp/product-details.html', locals())

@@ -1,0 +1,38 @@
+{% extends 'mainapp/base.html' %} {% load static %} {% block title %} Product
+Details {% endblock %} {% block main-content %}
+
+<h2 class="text-success text-center my-4">This is the Details Page</h2>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <img
+        src="{{ product.product_image.url }}"
+        width="300px"
+        height="200px"
+        alt="Product_Images"
+        class="img-fluid"
+      />
+    </div>
+
+    <div
+      class="col-sm-9 d-flex flex-column justify-content-center align-items-center"
+    >
+      <div>
+        <h4>{{product.title}}</h4>
+        <p class="text-danger fw-bold">
+          Discount Price: TK. {{product.discount_prices}} /-
+        </p>
+        <small class="text-danger text-decoration-line-through">
+          Selling Price: TK. {{product.selling_prices}} /-
+        </small>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto my-2">
+        <button class="btn btn-danger" type="button">Add To Cart</button>
+        <button class="btn btn-primary" type="button">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock main-content %}

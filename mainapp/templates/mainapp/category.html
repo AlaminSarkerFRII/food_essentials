@@ -22,8 +22,8 @@
       <div class="row">
         {% for product in products %}
 
-        <div class="col text-center">
-          <a href="#" class="btn">
+        <div class="col card me-2 text-center">
+          <a href="{% url 'product-details' product.id %}" class="btn">
             <div>
               <img
                 src="{{ product.product_image.url }}"
@@ -32,8 +32,12 @@
                 alt="Product_Images"
               />
               <h4>{{product.title}}</h4>
-              <p class="text-danger fw-bold">Discount Price: TK. {{product.discount_prices}} /-</p>
-              <small class="text-danger text-decoration-line-through"> Selling Price: TK. {{product.selling_prices}} /- </small>
+              <p class="text-danger fw-bold">
+                Discount Price: TK. {{product.discount_prices}} /-
+              </p>
+              <small class="text-danger text-decoration-line-through">
+                Selling Price: TK. {{product.selling_prices}} /-
+              </small>
             </div>
           </a>
         </div>
