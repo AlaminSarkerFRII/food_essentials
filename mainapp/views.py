@@ -7,6 +7,12 @@ from .models import Products
 def home(request):
     return render(request, 'mainapp/index.html')
 
+def about(request):
+    return render(request, 'mainapp/about.html')
+
+def contact(request):
+    return render(request, 'mainapp/contact.html')
+
 
 class CategoryView(View):
 
