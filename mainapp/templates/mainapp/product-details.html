@@ -26,6 +26,13 @@ Details {% endblock %} {% block main-content %}
         <small class="text-danger text-decoration-line-through">
           Selling Price: TK. {{product.selling_prices}} /-
         </small>
+
+        <ul class="my-4">
+          <h4>Products Features:</h4>
+
+          <li>{{product.description}}</li>
+
+        </ul>
       </div>
       <div class="d-grid gap-2 col-6 mx-auto my-2">
         <button class="btn btn-danger" type="button">Add To Cart</button>
