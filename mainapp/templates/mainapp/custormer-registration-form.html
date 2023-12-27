@@ -1,9 +1,41 @@
 {% extends 'mainapp/base.html' %} {% load static %} {% block title %} Customer
 Registration Form {% endblock %} {% block main-content %}
 
-<div class="container mt-5">
-  <div class="row container me-auto">
-    <div class="card col-12 col-sm-12 col-md-8 p-4">{{form}}</div>
+<div class="container">
+  <div class="row my-3 h-auto">
+    <div class="col-sm-6 offset-sm-3 mb-5">
+      <form method="post" novalidation class="offset-sm-2 shadow-lg p-4">
+        <h4 class="text-center text-success">Please Register Here !!</h4>
+
+        {% csrf_token %} {% for fm in form %} {{fm.label_tag}} {{fm}}
+
+        <small class="text-danger"> {{fm.errors | striptags }} </small>
+
+        {% endfor %}
+
+        <input type="submit" value="Submit" class="btn btn-primary my-2" />
+
+        <br />
+        <hr />
+
+        <div class="text-center text-primary fw-bold my-2">
+          <small>
+            Already Have an account ?
+            <a href="{% url 'login'%}" class="text-danger"> Login </a>
+          </small>
+        </div>
+
+        <div>
+          {% if form.non_field_errors %} {% for error in form.non_field_errors%}
+
+          <p class="alert alert-danger my-5">{{error}}</p>
+
+          {% endfor %}
+           {% endif %}
+
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 

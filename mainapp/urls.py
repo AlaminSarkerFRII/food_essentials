@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, about, contact, CategoryView, ProductDetails, CategoryTitleView, CustomerRegistrationView
+from .views import home, about, contact, CategoryView, ProductDetails, CategoryTitleView, CustomerRegistrationView,CustomerLoginView
 
 
 urlpatterns = [
@@ -10,9 +10,13 @@ urlpatterns = [
     path('category/<slug:val>', CategoryView.as_view(), name='category'),
     path('product-details/<int:pk>',
          ProductDetails.as_view(), name='product-details'),
-    #  Authentication
+    
+    # ---- Authentication----
 
     path('registration/',
          CustomerRegistrationView.as_view(), name='registration'),
+
+    path('login/',
+         CustomerLoginView.as_view(), name='login'),
 
 ]
