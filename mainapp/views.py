@@ -49,6 +49,7 @@ class ProductDetails(View):
 
 
 class CustomerRegistrationView(View):
+
     def get(self, request):
         form = CustormerRegistrationForm()
         return render(request, 'mainapp/custormer-registration-form.html', locals())
@@ -57,17 +58,17 @@ class CustomerRegistrationView(View):
         form = CustormerRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Successfully user regitrations")
+            messages.success(request, "Congratulatons !! User Regitrations Successfull")
         else:
-            messages.warning(request, "Invalid Input Data")
+            messages.error(request, "Invalid Input Data")
 
-        return render(request, 'mainapp/custormer-registration-form.html', locals())
+        return render(request, 'mainapp/custormer-registration-form.html', {'form' : form})
 
 
-class CustomerLoginView(View):
-    def get(self, request):
-        form = CustormerRegistrationForm()
-        return render(request, 'mainapp/login.html', locals())
+# class CustomerLoginView(View):
+#     def get(self, request):
+#         form = CustormerRegistrationForm()
+#         return render(request, 'mainapp/login.html', locals())
 
     # def post(self, request):
     #     form = CustormerRegistrationForm(request.POST)

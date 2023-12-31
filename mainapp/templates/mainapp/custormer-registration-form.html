@@ -4,7 +4,7 @@ Registration Form {% endblock %} {% block main-content %}
 <div class="container">
   <div class="row my-3 h-auto">
     <div class="col-sm-6 offset-sm-3 mb-5">
-      <form method="post" novalidation class="offset-sm-2 shadow-lg p-4">
+      <form method="post" novalidate class="offset-sm-2 shadow-lg p-4">
         <h4 class="text-center text-success">Please Register Here !!</h4>
 
         {% csrf_token %} {% for fm in form %} {{fm.label_tag}} {{fm}}
@@ -25,15 +25,22 @@ Registration Form {% endblock %} {% block main-content %}
           </small>
         </div>
 
-        <div>
-          {% if form.non_field_errors %} {% for error in form.non_field_errors%}
+        <!--Commons Errors -->
 
-          <p class="alert alert-danger my-5">{{error}}</p>
+        {% if form.non_field_errors %} {% for error in form.non_field_errors %}
 
-          {% endfor %}
-           {% endif %}
+        <p class="alert alert-danger my-5" role="alert">{{error}}</p>
 
-        </div>
+        {% endfor %} {% endif %}
+
+        <!--Commons Messages -->
+
+        {% if messages %} {% for message in messages %}
+
+        <div class="alert alert-{{message.tags}} my-5" role="alert">{{message}}</div>
+
+        {% endfor %} {% endif %}
+
       </form>
     </div>
   </div>

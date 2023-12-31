@@ -1,5 +1,8 @@
 from django.urls import path
-from .views import home, about, contact, CategoryView, ProductDetails, CategoryTitleView, CustomerRegistrationView,CustomerLoginView
+from .views import home, about, contact, CategoryView, ProductDetails, CategoryTitleView, CustomerRegistrationView
+
+from django.contrib.auth import views as auth_views
+from .forms import LoginForm,MyPasswordResetForm
 
 
 urlpatterns = [
@@ -16,7 +19,10 @@ urlpatterns = [
     path('registration/',
          CustomerRegistrationView.as_view(), name='registration'),
 
-    path('login/',
-         CustomerLoginView.as_view(), name='login'),
+    path('accounts/login/',
+         auth_views.LoginView.as_view(template_name='mainapp/login.html',authentication_form=LoginForm), name='login'),
+
+    path('password-reset/',
+         auth_views.PasswordResetView.as_view(template_name='mainapp/password-reset.html',form_class=MyPasswordResetForm), name='password-reset'),
 
 ]

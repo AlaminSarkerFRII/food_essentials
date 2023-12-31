@@ -1,6 +1,59 @@
 {% extends 'mainapp/base.html' %} {% load static %} {% block title %} Customer
 Login Form {% endblock %} {% block main-content %}
 
-<h2>Login</h2>
+<div class="container">
+  <div class="row my-3 h-auto">
+    <div class="col-sm-6 offset-sm-3 mb-5">
+      <form method="post" novalidate class="offset-sm-2 shadow-lg p-4">
+        <h4 class="text-center text-success">Please Login Here !!</h4>
+
+        {% csrf_token %} {% for fm in form %} {{fm.label_tag}} {{fm}}
+
+        <small class="text-danger"> {{fm.errors | striptags }} </small>
+
+        {% endfor %}
+
+        <input type="submit" value="Submit" class="btn btn-primary my-2" />
+
+        <br />
+        <hr />
+
+        <div class="text-center text-primary fw-bold my-2">
+          <small>
+            Don't Have an account ?
+            <a href="{% url 'registration'%}" class="text-danger"> Create an account </a>
+          </small>
+        </div>
+
+        <br/>
+
+        <div class="text-center text-primary fw-bold my-2">
+          <small>
+            Forgot Password ?
+            <a href="{% url 'password-reset'%}" class="text-danger"> Reset your Password </a>
+          </small>
+
+        </div>
+
+        <!--Commons Errors -->
+
+        {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+
+        <p class="alert alert-danger my-5" role="alert">{{error}}</p>
+
+        {% endfor %} {% endif %}
+
+        <!--Commons Messages -->
+
+        {% if messages %} {% for message in messages %}
+
+        <div class="alert alert-{{message.tags}} my-5" role="alert">{{message}}</div>
+
+        {% endfor %} {% endif %}
+
+      </form>
+    </div>
+  </div>
+</div>
 
 {% endblock main-content %}
