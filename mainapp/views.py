@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from .models import Products
-from .forms import CustormerRegistrationForm
+from .forms import CustormerRegistrationForm,CustomerProfileForm
 from django.contrib import messages
 
 
@@ -74,3 +74,12 @@ class CustomerRegistrationView(View):
     #     form = CustormerRegistrationForm(request.POST)
     #     if form.is_valid():
     #         form.save()
+
+
+class CustomerProfileView(View):
+    def get(self, request):
+        form = CustomerProfileForm()
+        return render(request,'mainapp/userprofile.html', locals())
+    
+    def post(self, request):
+        return render(request,'mainapp/userprofile.html', locals())
