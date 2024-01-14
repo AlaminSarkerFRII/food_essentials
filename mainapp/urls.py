@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, about, contact, CategoryView, ProductDetails, CategoryTitleView, CustomerRegistrationView,CustomerProfileView
+from .views import home, about, contact, CategoryView, ProductDetails, CategoryTitleView, CustomerRegistrationView,CustomerProfileView, address
 
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm,MyPasswordResetForm
@@ -14,7 +14,9 @@ urlpatterns = [
     path('product-details/<int:pk>',
          ProductDetails.as_view(), name='product-details'),
 
-    path('profile/',CustomerProfileView.as_view(), name='profile'),
+    path('profile/', CustomerProfileView.as_view(), name='profile'),
+    path('address/', address, name='address'),
+
     
     # ---- Authentication----
 

@@ -44,13 +44,13 @@ class MyPasswordResetForm(PasswordResetForm):
 class CustomerProfileForm(forms.ModelForm):
      class Meta:
           model = Customer 
-          fields = ['name', 'user', 'identity', 'state', 'zipcode']
+          fields = ['name', 'identity', 'city', 'mobile', 'state', 'zipcode']
 
           widgets ={
-               
                'name' : forms.TextInput(attrs={'class': 'form-control'}),
                'identity' : forms.TextInput(attrs={'class': 'form-control'}),
                'city' : forms.TextInput(attrs={'class': 'form-control'}),
                'mobile' : forms.NumberInput(attrs={'class': 'form-control'}),
+               'state' : forms.Select(attrs={'class': 'form-control'}),
                'zipcode' : forms.NumberInput(attrs={'class': 'form-control'})
           }
