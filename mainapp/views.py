@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
 from .models import Products, Customer
 from .forms import CustormerRegistrationForm,CustomerProfileForm
@@ -106,3 +106,31 @@ def address(request):
     address = Customer.objects.filter(user=request.user)
 
     return render(request,'mainapp/address.html',locals())
+
+# UpdateAddress
+
+class UpdateAddress(View):
+
+    def get(self, request,pk):
+        address = Customer.objects.get(pk=pk)
+        form = CustomerProfileForm(instance=address)
+        return render(request,'mainapp/updateAddress.html',locals())
+    
+    def post(self, request,pk):
+        form = CustomerProfileForm(request.POST)
+        if form.is_valid():
+            address = Customer.objects.get(pk=pk)
+            address.name = form.cleaned_data['name']
+            address.identity = form.cleaned_data['identity']
+            address.city = form.cleaned_data['city']
+            address.state = form.cleaned_data['state']
+            address.mobile = form.cleaned_data['mobile']
+            address.zipcode = form.cleaned_data['zipcode']
+
+            address.save()
+            messages.success(request,"Congratulations ! you have successfully Updated Address !!")
+        else:
+            messages.warning(request,"Invalid Address!");
+
+
+        return redirect('address')

@@ -8,7 +8,7 @@
     <div class="col-sm-2 border-end">
       <ul class="list-unstyled">
         <li class="d-grid">
-          <a class="btn " href="{% url 'profile'%}"> Profile </a>
+          <a class="btn" href="{% url 'profile'%}"> Profile </a>
         </li>
         <li class="d-grid">
           <a class="btn btn-primary my-2" href="{% url 'address'%}">
@@ -35,7 +35,12 @@
               <p class="">Zipcode : {{add.zipcode}}</p>
 
               <p class="text-center">
-                <a type="button" class="btn btn-success" href="#">Update</a>
+                <a
+                  type="button"
+                  class="btn btn-success"
+                  href="{% url 'updateAddress' pk=add.id %}"
+                  >Update Address</a
+                >
               </p>
             </div>
           </div>
