@@ -74,6 +74,14 @@ class CustomerRegistrationView(View):
     #     form = CustormerRegistrationForm(request.POST)
     #     if form.is_valid():
     #         form.save()
+    
+    
+class PasswordChangeView(View):
+    pass
+
+
+class PasswordChangeDoneView(View):
+    pass
 
 
 class CustomerProfileView(View):
