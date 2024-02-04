@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UsernameField,PasswordResetForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UsernameField,PasswordResetForm , PasswordChangeForm
 from django.contrib.auth.models import User
 from .models import Customer
 
@@ -30,6 +30,22 @@ class CustormerRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username','email','password1']
+
+
+
+
+class MyPasswordChangeForm(PasswordChangeForm):
+        
+    old_password = forms.CharField(label='Old Password', widget=forms.PasswordInput(
+        attrs={'autofocus':True, 'autocomplete': 'current-password', 'class': 'form-control'}))
+    
+    new_password1 = forms.CharField(label='Password', widget=forms.PasswordInput(
+        attrs={'autocomplete': 'current-password', 'class': 'form-control'}))
+    
+    new_password2 = forms.CharField(label='Password', widget=forms.PasswordInput(
+        attrs={'autocomplete': 'current-password', 'class': 'form-control'}))
+
+
 
 
 

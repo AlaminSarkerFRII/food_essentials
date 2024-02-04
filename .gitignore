@@ -1,2 +1,4 @@
 venv
 /__pycached__
+/mainapp/__pycache__/
+ mainapp/__pycache__/
