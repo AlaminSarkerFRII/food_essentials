@@ -41,5 +41,8 @@ urlpatterns = [
     
     path('passwordchangedone/',
          auth_views.PasswordChangeDoneView.as_view(template_name='mainapp/passwordchangedone.html'), name='passwordchangedone'),
+    
+    path('logout/',
+         auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 
 ]
