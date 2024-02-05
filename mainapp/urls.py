@@ -2,7 +2,7 @@ from django.urls import path
 from .views import home, about, contact, CategoryView, ProductDetails, CategoryTitleView, CustomerRegistrationView,CustomerProfileView, address,UpdateAddress,PasswordChangeView,PasswordChangeDoneView
 
 from django.contrib.auth import views as auth_views
-from .forms import LoginForm,MyPasswordResetForm , MyPasswordChangeForm
+from .forms import LoginForm, MyPasswordResetForm , MyPasswordChangeForm, MySetPasswordForm
 
 
 urlpatterns = [
@@ -27,9 +27,6 @@ urlpatterns = [
 
     path('accounts/login/',
          auth_views.LoginView.as_view(template_name='mainapp/login.html',authentication_form=LoginForm), name='login'),
-
-    path('password-reset/',
-         auth_views.PasswordResetView.as_view(template_name='mainapp/password-reset.html',form_class=MyPasswordResetForm), name='password-reset'),
     
   path('passwordchange/',
          auth_views.PasswordChangeView.as_view(
@@ -44,5 +41,19 @@ urlpatterns = [
     
     path('logout/',
          auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    
+# ========== password-reset Routes ===========
+     
+    path('password-reset/',
+         auth_views.PasswordResetView.as_view(template_name='mainapp/password_reset.html', form_class=MyPasswordResetForm), name='password_reset'),
+    
+    path('password-reset/done/',
+         auth_views.PasswordResetDoneView.as_view(template_name='mainapp/password_reset_done.html'), name='password_reset_done'),
+    
+    path('password-reset-confirm/<uuid4>/<token>/',
+         auth_views.PasswordResetConfirmView.as_view(template_name='mainapp/password_reset_confirm.html',form_class=MySetPasswordForm), name='password_reset_confirm'),
+    
+    path('password-reset-complete/',
+         auth_views.PasswordResetCompleteView.as_view(template_name='mainapp/password_reset_complete.html'), name='password_reset_complete'),
 
 ]

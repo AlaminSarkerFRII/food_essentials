@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UsernameField,PasswordResetForm , PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UsernameField,PasswordResetForm , PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.models import User
 from .models import Customer
 
@@ -47,14 +47,23 @@ class MyPasswordChangeForm(PasswordChangeForm):
 
 
 
-
+# ======== Start Reset Password =============================
 
 class MyPasswordResetForm(PasswordResetForm):
-        pass
-    # username = UsernameField(widget=forms.TextInput(
-    #     attrs={'autofocus': 'True', 'class': 'form-control'}))
-    # password = forms.CharField(label='Password', widget=forms.PasswordInput(
-    #     attrs={'autocomplete': 'current-password', 'class': 'form-control'}))
+    
+    email = forms.EmailField(widget=forms.EmailInput(
+        attrs={'autofocus': 'True', 'class': 'form-control'}))
+    
+    
+class MySetPasswordForm(SetPasswordForm):
+    
+    new_password1 = forms.CharField(label='New Password', widget=forms.PasswordInput(
+        attrs={'autocomplete': 'current-password', 'class': 'form-control'}))
+    new_password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(
+        attrs={'autocomplete': 'current-password', 'class': 'form-control'}))
+
+
+# ======== End Reset Password =============================
 
 
 class CustomerProfileForm(forms.ModelForm):
