@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
 from django.views import View
-from .models import Products, Customer
+from .models import Products, Customer,CartItem
 from .forms import CustormerRegistrationForm,CustomerProfileForm
 from django.contrib import messages
 
@@ -142,3 +143,29 @@ class UpdateAddress(View):
 
 
         return redirect('address')
+    
+    
+    # ================= Add To Cart =======================> 
+    
+
+def add_to_cart(request):
+    user = request.user
+    product_id = request.GET.get('product_id')
+    product = Products.objects.get(id=product_id)
+    
+    CartItem.objects.create(user=user, products=product)
+        
+    return redirect('/cart-view')
+    
+    
+    
+    
+
+def cart_view(request):
+    user = request.user
+    cart =CartItem.objects.filter(user=user)
+    # total_price = sum(item.get_total_price() for item in cart_items)
+    return render(request, 'mainapp/addtocart.html', locals())
+    
+    
+    

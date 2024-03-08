@@ -1,0 +1,40 @@
+{% extends 'mainapp/base.html' %} {% load static %} {% block title%} Add To Cart
+{% endblock %} {% block main-content%}
+
+<div class="container my-5">
+  <div class="row">
+    {% if cart %}
+
+    <div class="col-sm-8">
+      {%for item in cart%}
+
+      <div class="card">
+        <img
+          src="{{item.product.product_image.url.}}"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+
+            <h3>{{item.product.title}}</h3>
+
+
+          <p class="card-text">{{item.product.description}}</p>
+        </div>
+
+        <p>Total Price: ${{ total_price }}</p>
+      </div>
+      {%endfor%}
+
+      <div class="col-sm-4">
+        <p>product checkout functionallity</p>
+      </div>
+
+
+      {%endif%}
+      
+    </div>
+  </div>
+
+  {% endblock main-content%}
+</div>

@@ -57,3 +57,22 @@ class Customer(models.Model):
     def __str__(self):
         return f"{self.name} {self.user}"
 
+
+class CartItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    products = models.ForeignKey(Products, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    
+    class Meta:
+        verbose_name_plural = 'Cart Items'
+    
+    
+    @property
+    def total_cost(self):
+        return self.quantity * self.products.discount_prices
+    
+    
+    
+    
+    
+    

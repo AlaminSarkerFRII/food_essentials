@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, about, contact, CategoryView, ProductDetails, CategoryTitleView, CustomerRegistrationView,CustomerProfileView, address,UpdateAddress,PasswordChangeView,PasswordChangeDoneView
+from .views import home, about, contact, CategoryView, ProductDetails, CategoryTitleView, CustomerRegistrationView,CustomerProfileView, address,UpdateAddress,PasswordChangeView,PasswordChangeDoneView, add_to_cart,cart_view
 
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm, MyPasswordResetForm , MyPasswordChangeForm, MySetPasswordForm
@@ -20,7 +20,7 @@ urlpatterns = [
     path('updateAddress/<int:pk>', UpdateAddress.as_view(), name='updateAddress'),
 
     
-    # ---- Authentication Route---------------
+    # ==============================>  Authentication Route ==============================>
 
     path('registration/',
          CustomerRegistrationView.as_view(), name='registration'),
@@ -42,7 +42,7 @@ urlpatterns = [
     path('logout/',
          auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     
-# ========== password-reset Routes ===========
+# ================= password-reset Routes ==============================>
      
     path('password-reset/',
          auth_views.PasswordResetView.as_view(template_name='mainapp/password_reset.html', form_class=MyPasswordResetForm), name='password_reset'),
@@ -55,5 +55,13 @@ urlpatterns = [
     
     path('password-reset-complete/',
          auth_views.PasswordResetCompleteView.as_view(template_name='mainapp/password_reset_complete.html'), name='password_reset_complete'),
+    
+    
+    #===================== Add to Cart =============================>
+    
+     path('add-to-cart/', add_to_cart, name='add-to-cart'),
+     
+     path('cart-view/', cart_view, name='cart-view'),
+    
 
 ]

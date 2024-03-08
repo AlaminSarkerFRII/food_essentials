@@ -34,10 +34,23 @@ Details {% endblock %} {% block main-content %}
 
         </ul>
       </div>
-      <div class="d-grid gap-2 col-6 mx-auto my-2">
-        <button class="btn btn-danger" type="button">Add To Cart</button>
-        <button class="btn btn-primary" type="button">Buy Now</button>
+
+
+
+      <div class="d-flex">
+        <form action="/add-to-cart" class="d-inline ">
+
+          <input type="hidden" name="product_id" value={{ product.id }} />
+
+          <button type="submit" class="btn btn-warning shadow px-5 py-2">Add To Cart</button>
+
+        </form>
+
+        <a href="{% url "cart-view"%}" class="btn btn-primary shadow px-5 py-2 ms-4">Buy Now</a>
       </div>
+       
+
+   
     </div>
   </div>
 </div>
