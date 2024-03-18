@@ -68,9 +68,8 @@ class CartItem(models.Model):
     
     
     @property
-    def total_cost(self):
+    def get_total_price(self):
         return self.quantity * self.products.discount_prices
-    
     
     
     

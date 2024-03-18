@@ -23,6 +23,7 @@ admin.site.register(Customer, CustomerAdmin)
 class CartItemAdmin(admin.ModelAdmin):
     
     list_display = ['id', 'user', 'products', 'quantity']
+    readonly_fields = ['user',]
     
     
 admin.site.register(CartItem, CartItemAdmin)
