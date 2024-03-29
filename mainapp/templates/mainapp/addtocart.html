@@ -20,6 +20,7 @@
                                 <hr>
 
                                 <div class="d-flex justify-content-between align-items-center mb-4">
+
                                     <div>
                                         <p class="mb-1">Shopping cart</p>
                                         <p class="mb-0"> You have
@@ -75,7 +76,7 @@
                                                     <h5 class="mb-0">$<span id="totalPrice{{ item.id }}">{{ item.quantity}}</span>
                                                     </h5>
 
-                                                    <!--                                                    {{item.get_total_price}}-->
+                                                    <!-- {{item.get_total_price}} -->
 
                                                 </div>
                                                 <a href="#!" class="text-decoration-none" style="color: #cecece;"
@@ -102,11 +103,7 @@
                                         <hr class="my-4">
                                         <!-- Subtotal, shipping, total -->
                                         <div class="d-grid justify-content-between gap-4">
-                                                <span class="d-flex">
-                                                    <i class="fas fa-long-arrow-alt-right ms-2"></i>
-                                                        Total Price $ 00.00
-                                                </span>
-
+                                            <span class="d-flex">Total Price $<span id="totalPrice">00.00</span></span>
                                             <span> After Discount </span>
                                         </div>
                                     </div>
@@ -127,33 +124,42 @@
     </div>
 </section>
 
+<script>
+    function incrementItem(itemId, price) {
+        var quantityElement = document.getElementById('quantity' + itemId);
+        var totalPriceElement = document.getElementById('totalPrice' + itemId);
+        var quantity = parseInt(quantityElement.innerText);
+        quantity++;
+        quantityElement.innerText = quantity;
+        totalPriceElement.innerText = (quantity * price).toFixed(2);
+        updateTotalPrice();
+    }
+
+    function decrementItem(itemId, price) {
+        var quantityElement = document.getElementById('quantity' + itemId);
+        var totalPriceElement = document.getElementById('totalPrice' + itemId);
+        var quantity = parseInt(quantityElement.innerText);
+        if (quantity > 1) {
+            quantity--;
+            quantityElement.innerText = quantity;
+            totalPriceElement.innerText = (quantity * price).toFixed(2);
+            updateTotalPrice();
+        }
+    }
+
+    function updateTotalPrice() {
+        var totalPrice = 0;
+        {% for item in cart_items %}
+            var itemQuantity = parseInt(document.getElementById('quantity{{ item.id }}').innerText);
+            var itemPrice = parseFloat('{{ item.products.discount_prices }}');
+            totalPrice += itemQuantity * itemPrice;
+        {% endfor %}
+        document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
+    }
+</script>
+
+
 {% endblock main-content%}
 
-<!--<script>-->
-<!--    function incrementItem(itemId) {-->
-<!--        var quantityElement = document.getElementById('quantity' + itemId);-->
-<!--        var totalPriceElement = document.getElementById('totalPrice' + itemId);-->
-<!--        var quantity = parseInt(quantityElement.innerText);-->
-<!--        quantity++;-->
-<!--        quantityElement.innerText = quantity;-->
-<!--        totalPriceElement.innerText = quantity * {{ item.products.price }};-->
-<!--        // You may want to update the total price of the cart here-->
-<!--    }-->
 
-<!--    function decrementItem(itemId) {-->
-<!--        var quantityElement = document.getElementById('quantity' + itemId);-->
-<!--        var totalPriceElement = document.getElementById('totalPrice' + itemId);-->
-<!--        var quantity = parseInt(quantityElement.innerText);-->
-<!--        if (quantity > 1) {-->
-<!--            quantity&#45;&#45;;-->
-<!--            quantityElement.innerText = quantity;-->
-<!--            totalPriceElement.innerText = quantity * {{ item.products.price }};-->
-<!--            // You may want to update the total price of the cart here-->
-<!--        }-->
-<!--    }-->
-
-<!--    function removeItem(itemId) {-->
-<!--        // Implement logic to remove the item from the cart-->
-<!--    }-->
-<!--</script>-->
 
