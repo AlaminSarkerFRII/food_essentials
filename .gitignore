@@ -3,3 +3,5 @@ venv
 /mainapp/__pycache__/
  mainapp/__pycache__/
  .prettierrc
+
+ .idea
