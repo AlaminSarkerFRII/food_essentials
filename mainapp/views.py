@@ -153,7 +153,6 @@ def add_to_cart(request):
     user = request.user
     product_id = request.GET.get('product_id')
     product = Products.objects.get(id=product_id)
-
     CartItem.objects.create(user=user, products=product)
 
     return redirect('/cart-view')
@@ -162,5 +161,5 @@ def add_to_cart(request):
 def cart_view(request):
     user = request.user
     cart_items = CartItem.objects.filter(user=user)
-    total_price = sum(item.products.discount_prices for item in cart_items)
+    # total_price = sum(item.products.discount_prices for item in cart_items)
     return render(request, 'mainapp/addtocart.html', locals())

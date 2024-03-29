@@ -12,8 +12,9 @@
                     <div class="card-body p-4">
 
                         <div class="row">
-                            {% for item in cart_items %}
-                            <div class="col-lg-7">
+
+                            <div class="col-lg-7 ">
+
                                 <h5 class="mb-3"><a href="#!" class="text-body"><i
                                         class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
                                 <hr>
@@ -28,17 +29,21 @@
                                     </div>
 
                                     <div>
-                                        <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
-                                                                                                    class="text-body">price
-                                            <i class="fas fa-angle-down mt-1"></i></a></p>
+                                        <p class="mb-0"><span class="text-muted">Sort by:</span>
+                                            <a href="#!" class="text-body">price<i
+                                                    class="fas fa-angle-down mt-1"></i></a></p>
                                     </div>
 
                                 </div>
 
+                                <!--==================  Start  Cart Item     ====================-->
+
+                                {% for item in cart_items %}
 
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between">
+
                                             <div class="d-flex flex-row align-items-center">
                                                 <div>
                                                     <img src="{{item.products.product_image.url}}"
@@ -50,46 +55,69 @@
                                                     <p class="small mb-0">{{item.products.description}}</p>
                                                 </div>
                                             </div>
+
+                                            <div class="d-flex flex-auto align-items-center">
+                                                <span id="quantity{{ item.id }}" class="fw-normal mb-0">{{ item.quantity }}</span>
+                                            </div>
+
                                             <div class="d-flex flex-row align-items-center">
                                                 <div style="width: 50px;">
-                                                    <h5 class="fw-normal mb-0">2</h5>
+                                                    <button class="btn btn-sm btn-outline-secondary"
+                                                            onclick="decrementItem('{{ item.id }}')">
+                                                        <i class="fas fa-minus"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary"
+                                                            onclick="incrementItem('{{ item.id }}')">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
                                                 </div>
                                                 <div style="width: 80px;">
-                                                    <h5 class="mb-0">$900</h5>
+                                                    <h5 class="mb-0">$<span id="totalPrice{{ item.id }}">{{ item.quantity}}</span>
+                                                    </h5>
+
+                                                    <!--                                                    {{item.get_total_price}}-->
+
                                                 </div>
-                                                <a href="#!" class="text-decoration-none" style="color: #cecece;"><i
-                                                        class="fas fa-trash-alt"></i></a>
+                                                <a href="#!" class="text-decoration-none" style="color: #cecece;"
+                                                   onclick="removeItem('{{ item.id }}')">
+                                                    <i class="fas fa-trash-alt text-danger"></i>
+                                                </a>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
 
+                                {% endfor %}
 
-                                <!-- Other shopping card items -->
-
+                                <!--==================  End  Cart Item     ====================-->
                             </div>
-                            <div class="col-lg-5">
 
+                            <!-- Calculate Total Cart Price  -->
+
+                            <div class="col-lg-5 d-grid align-items-center">
                                 <div class="card bg-primary text-white rounded-3">
                                     <div class="card-body">
                                         <!-- Card type icons -->
                                         <hr class="my-4">
                                         <!-- Subtotal, shipping, total -->
+                                        <div class="d-grid justify-content-between gap-4">
+                                                <span class="d-flex">
+                                                    <i class="fas fa-long-arrow-alt-right ms-2"></i>
+                                                        Total Price $ 00.00
+                                                </span>
 
-                                        <button type="button" class="btn btn-info btn-block btn-lg">
-                                            <div class="d-flex justify-content-between">
-                                                <span> $ {{ total_price }}</span>
-                                                <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
-                                            </div>
-                                        </button>
+                                            <span> After Discount </span>
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
 
-                        </div>
-                        {% endfor %}
+                            <a href="{%  url 'checkout' % }" type="button" class="btn btn-info btn-block btn-md w-20">
+                                <span> Checkout </span>
+                            </a>
 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,5 +127,33 @@
     </div>
 </section>
 
-
 {% endblock main-content%}
+
+<!--<script>-->
+<!--    function incrementItem(itemId) {-->
+<!--        var quantityElement = document.getElementById('quantity' + itemId);-->
+<!--        var totalPriceElement = document.getElementById('totalPrice' + itemId);-->
+<!--        var quantity = parseInt(quantityElement.innerText);-->
+<!--        quantity++;-->
+<!--        quantityElement.innerText = quantity;-->
+<!--        totalPriceElement.innerText = quantity * {{ item.products.price }};-->
+<!--        // You may want to update the total price of the cart here-->
+<!--    }-->
+
+<!--    function decrementItem(itemId) {-->
+<!--        var quantityElement = document.getElementById('quantity' + itemId);-->
+<!--        var totalPriceElement = document.getElementById('totalPrice' + itemId);-->
+<!--        var quantity = parseInt(quantityElement.innerText);-->
+<!--        if (quantity > 1) {-->
+<!--            quantity&#45;&#45;;-->
+<!--            quantityElement.innerText = quantity;-->
+<!--            totalPriceElement.innerText = quantity * {{ item.products.price }};-->
+<!--            // You may want to update the total price of the cart here-->
+<!--        }-->
+<!--    }-->
+
+<!--    function removeItem(itemId) {-->
+<!--        // Implement logic to remove the item from the cart-->
+<!--    }-->
+<!--</script>-->
+
